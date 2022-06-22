@@ -1,14 +1,27 @@
-import { loginSuccess } from "../constants/constants";
+import { createSlice } from '@reduxjs/toolkit'
 
-export default function loginReducer(state=[], action) {
-    switch (action.type) {
-        case loginSuccess:
-            return [
-                ...state,
-                {loginData:action.data}
-            ]
-        default:
-            return state
-    }
+export const stateUMS = createSlice({
+    name: 'states',
+    initialState: {
+        islogin: false,
+        userId: "",
+    },
+    reducers: {
+        isLogin: (state, action) => {
+            debugger
+            state.islogin = true;
+            state.userId=action.payload;
+        },
+        isLogout: (state) => {
+            state.islogin = false;
+        },
+       
+    },
+})
 
-}
+// Action creators are generated for each case reducer function
+export const { isLogin, isLogout } = stateUMS.actions
+
+export default stateUMS.reducer
+
+

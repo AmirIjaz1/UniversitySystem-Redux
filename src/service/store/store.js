@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
-import loginReducer from '../reducers/reducer';
+import { configureStore } from '@reduxjs/toolkit'
+import { stateUMS } from '../reducers/reducer'
 
 
-export const store = configureStore({
-  reducer: {
-    loginReducer,
-  }
-});
+export default configureStore({
+    reducer: {
+        states: stateUMS.reducer
+    },
+})

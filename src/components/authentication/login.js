@@ -6,16 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { loginData } from '../constants/constants';
 import { useState } from 'react';
 import { loginAPI } from '../../methods/AuthenticationMethods';
+import { useDispatch } from "react-redux";
+import { isLogin } from '../../service/reducers/reducer'
 
 
 
 function Login(props) {
-    debugger
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    
+    const dispatch = useDispatch();
+
     const loginClick=(response)=>{
-        debugger
         if(response==true){
             if(loginData.email && loginData.password){
                 setError("")
@@ -29,7 +30,7 @@ function Login(props) {
             setError("Email Or Password are wrong")
         }
         else{
-            debugger
+            dispatch(isLogin({id:response}))
             console.log(props)
         }
     }
